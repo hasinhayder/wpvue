@@ -88,3 +88,17 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+body.wp-admin {
+  height: unset !important;
+  min-height: unset !important;
+  min-width: unset !important;
+  display: block !important;
+  place-items: unset !important;
+
+}
+body.wp-admin #wpwrap #adminmenuwrap {
+  position: fixed !important;
+  top: unset !important;
+  bottom: unset !important;
+}
