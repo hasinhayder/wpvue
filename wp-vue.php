@@ -17,8 +17,19 @@ class WPVue {
         add_action('admin_enqueue_scripts', [$this, 'loadAssets']);
         add_action('admin_menu', [$this, 'adminMenu']);
         add_filter('script_loader_tag', [$this, 'loadScriptAsModule'], 10, 3);
+        add_filter( 'plugin_action_links_wpvue/wp-vue.php', array( $this, 'filter_plugin_action_links' ) );
     }
 
+    /**
+     * Action links for Main Page
+     */
+    public function filter_plugin_action_links( array $actions ) {
+        return array_merge( $actions, array(
+            'main-page' => '<a href="' . admin_url('admin.php?page=admin/admin.php') . '">' .
+                esc_html__('Plugin Page', 'wp-vue') . '</a>',
+        ) );
+    }
+    
     function loadScriptAsModule($tag, $handle, $src) {
         if ('wp-vue-core' !== $handle) {
             return $tag;
